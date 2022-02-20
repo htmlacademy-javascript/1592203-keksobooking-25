@@ -1,30 +1,24 @@
 function getRandomPositiveInt(min, max) {
-  try {
-    if (Math.min(min,max)<0) {throw NaN;}
-  }
-  catch (err) {
-    return err;
+  if (Math.min(min,max)<0) {
+    throw new RangeError('Incorrect range!');
   }
 
-  const minInt =  Math.min(min,max);
-  const maxInt =  Math.max(min,max);
+  const start =  Math.min(min,max);
+  const end =  Math.max(min,max);
 
-  return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
+  return Math.floor(Math.random() * (start - end + 1)) + end;
 }
 
-function getRandomPositiveFloat(min, max, charAfterSign) {
-  try {
-    if (Math.min(min,max)<0) {throw NaN;}
-  }
-  catch (err) {
-    return err;
+function getRandomPositiveFloat(min, max, lengthFractional) {
+  if (Math.min(min,max)<0) {
+    throw new RangeError('Incorrect range!');
   }
 
-  const minFloat =  Math.min(min,max);
-  const maxFloat =  Math.max(min,max);
+  const start =  Math.min(min,max);
+  const end =  Math.max(min,max);
 
-  return (Math.random() * (maxFloat - minFloat) + minFloat).toFixed(charAfterSign);
+  return (Math.random() * (start - end) + end).toFixed(lengthFractional);
 }
 
-getRandomPositiveInt(1000, 500);
-getRandomPositiveFloat(0, 1, 2);
+getRandomPositiveInt(1000, 400);
+getRandomPositiveFloat(0.1, 0.3, 2);
