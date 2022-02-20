@@ -1,32 +1,30 @@
 function getRandomPositiveInt(min, max) {
-  if ((min === max) || (min < 0) || (max < 0)) {
-    return console.error('data error %d',NaN);
+  try {
+    if (Math.min(min,max)<0) {throw NaN;}
+  }
+  catch (err) {
+    return err;
   }
 
-  if (max < min) {
-    min = min + max;
-    max = min - max;
-    min = min - max;
-    return console.warn('reverse range %d', Math.floor(Math.random() * (max - min + 1)) + min);
-  }
+  const minInt =  Math.min(min,max);
+  const maxInt =  Math.max(min,max);
 
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 }
 
 function getRandomPositiveFloat(min, max, charAfterSign) {
-  if ((min === max) || (min < 0) || (max < 0)) {
-    return console.error('data error %d',NaN);
+  try {
+    if (Math.min(min,max)<0) {throw NaN;}
+  }
+  catch (err) {
+    return err;
   }
 
-  if (max < min) {
-    min = min + max;
-    max = min - max;
-    min = min - max;
-    return console.warn('reverse range %d', (Math.random() * (max - min) + min).toFixed(charAfterSign));
-  }
+  const minFloat =  Math.min(min,max);
+  const maxFloat =  Math.max(min,max);
 
-  return (Math.random() * (max - min) + min).toFixed(charAfterSign);
+  return (Math.random() * (maxFloat - minFloat) + minFloat).toFixed(charAfterSign);
 }
 
 getRandomPositiveInt(1000, 500);
-getRandomPositiveFloat(1, -3, 2);
+getRandomPositiveFloat(0, 1, 2);
