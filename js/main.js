@@ -35,14 +35,13 @@ function getRandomElement(elements) {
 }
 
 function getArrayFeatures(elements, length) {
-  /*const features = new Array(length);
-  features.forEach((element) => {
+  /*const features = new Array(length).map(() => {
     let elementFeatures;
     do {
-      elementFeatures = getRandomArrayElement(elements);
+      elementFeatures = getRandomElement(elements);
     }
     while (features.includes(elementFeatures));
-    element = elementFeatures;
+    return elementFeatures;
   });*/
   const features = [];
   for (let i=0; i < length; i++) {
