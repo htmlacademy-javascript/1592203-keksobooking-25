@@ -30,54 +30,60 @@ const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/ke
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
-function getRandomArrayElement(elements) {
+function getRandomElement(elements) {
   return elements[getRandomPositiveInt(0, elements.length - 1)];
 }
 
-const getArrayFeatures = (elements, length) => {
-  const features = [];
-  for (let i=0; i < length; i++) {
+function getArrayFeatures(elements, length) {
+  /*const features = new Array(length);
+  features.forEach((element) => {
     let elementFeatures;
     do {
       elementFeatures = getRandomArrayElement(elements);
     }
     while (features.includes(elementFeatures));
+    element = elementFeatures;
+  });*/
+  const features = [];
+  for (let i=0; i < length; i++) {
+    let elementFeatures;
+    do {
+      elementFeatures = getRandomElement(elements);
+    }
+    while (features.includes(elementFeatures));
     features.push(elementFeatures);
   }
   return features;
-};
+}
 
-const getArrayPhotos = (elements, length) => {
+function getArrayPhoto(elements, length) {
   const photos = [];
   for (let i=0; i < length; i++) {
-    photos.push(getRandomArrayElement(elements));
+    photos.push(getRandomElement(elements));
   }
   return photos;
-};
+}
 
-const getNumberImages = () => {
-  const numberImages = getRandomPositiveInt(1, 10);
-  if (numberImages < 10) {
-    return `img/avatars/user0${numberImages}.png`;
-  }
-  return `img/avatars/user${numberImages}.png`;
-};
+function getPhotoAuthor() {
+  const numberImages = String(getRandomPositiveInt(1, 10));
+  return `img/avatars/user${numberImages.padStart(2,'0')}.png`;
+}
 
-function createObject() {
+function getCard() {
   return {
-    author: {avatar: getNumberImages(10)},
+    author: {avatar: getPhotoAuthor()},
     offer: {
-      title: getRandomArrayElement(TITLE),
+      title: getRandomElement(TITLE),
       address: `${getRandomPositiveFloat(35.65000, 35.70000, 5)}  ${getRandomPositiveFloat(139.70000, 139.80000, 5)}`,
       price: getRandomPositiveInt(2500, 15000),
-      type: getRandomArrayElement(TYPE),
+      type: getRandomElement(TYPE),
       rooms: getRandomPositiveInt(10, 400),
       guests: getRandomPositiveInt(50, 1400),
-      checkin: getRandomArrayElement(CHECKIN),
-      checkout: getRandomArrayElement(CHECKOUT),
+      checkin: getRandomElement(CHECKIN),
+      checkout: getRandomElement(CHECKOUT),
       features: getArrayFeatures(FEATURES, getRandomPositiveInt(1, 6)),
-      description: getRandomArrayElement(DESCRIPTION),
-      photos: getArrayPhotos(PHOTOS,getRandomPositiveInt(1, 3))
+      description: getRandomElement(DESCRIPTION),
+      photos: getArrayPhoto(PHOTOS,getRandomPositiveInt(1, 3))
     },
     location: {
       lat: getRandomPositiveFloat(35.65000, 35.70000, 5),
@@ -86,4 +92,4 @@ function createObject() {
   };
 }
 
-const arrayObject = Array.from({length: 10}, createObject);
+const arrayObject = Array.from({length: 10}, getCard);
