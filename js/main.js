@@ -34,15 +34,7 @@ function getRandomElement(elements) {
   return elements[getRandomPositiveInt(0, elements.length - 1)];
 }
 
-function getArrayFeatures(elements, length) {
-  /*const features = new Array(length).map(() => {
-    let elementFeatures;
-    do {
-      elementFeatures = getRandomElement(elements);
-    }
-    while (features.includes(elementFeatures));
-    return elementFeatures;
-  });*/
+function getArrayFeature(elements, length) {
   const features = [];
   for (let i=0; i < length; i++) {
     let elementFeatures;
@@ -80,7 +72,7 @@ function getCard() {
       guests: getRandomPositiveInt(50, 1400),
       checkin: getRandomElement(CHECKIN),
       checkout: getRandomElement(CHECKOUT),
-      features: getArrayFeatures(FEATURES, getRandomPositiveInt(1, 6)),
+      features: getArrayFeature(FEATURES, getRandomPositiveInt(1, 6)),
       description: getRandomElement(DESCRIPTION),
       photos: getArrayPhoto(PHOTOS,getRandomPositiveInt(1, 3))
     },
@@ -91,4 +83,4 @@ function getCard() {
   };
 }
 
-const arrayObject = Array.from({length: 10}, getCard);
+getCard();
