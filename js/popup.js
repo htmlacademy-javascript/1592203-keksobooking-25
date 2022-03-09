@@ -10,17 +10,17 @@ similarPopups.forEach( ({author, offer}) => {
   if (offer.title !== '') {
     popupElement.querySelector('.popup__title').textContent = offer.title;
   } else {
-    popupElement.classList.remove('.popup__title');
+    popupElement.querySelector('.popup__title').style.display = 'none';
   }
   if (offer.address !== '') {
     popupElement.querySelector('.popup__text--address').textContent = offer.address;
   } else {
-    popupElement.classList.remove('.popup__text--address');
+    popupElement.querySelector('.popup__text--address').style.display = 'none';
   }
   if (offer.price !== '') {
     popupElement.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
   } else {
-    popupElement.classList.remove('.popup__text--price');
+    popupElement.querySelector('.popup__text--price').style.display = 'none';
   }
   if (offer.type !== '') {
     switch (offer.type) {
@@ -41,17 +41,17 @@ similarPopups.forEach( ({author, offer}) => {
         break;
     }
   } else {
-    popupElement.classList.remove('.popup__type');
+    popupElement.querySelector('.popup__type').style.display = 'none';
   }
   if ((offer.rooms !== '') || (offer.guests !== '')) {
     popupElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests}`;
   } else {
-    popupElement.classList.remove('.popup__text--capacity');
+    popupElement.querySelector('.popup__text--capacity').style.display = 'none';
   }
   if ((offer.checkin !== '') || (offer.checkout !== '')) {
     popupElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   } else {
-    popupElement.classList.remove('.popup__text--time');
+    popupElement.querySelector('.popup__text--time').style.display = 'none';
   }
   if (offer.features.length !== 0) {
     const featureContainer = popupElement.querySelector('.popup__features');
@@ -65,12 +65,12 @@ similarPopups.forEach( ({author, offer}) => {
       }
     });
   } else {
-    popupElement.classList.remove('.popup__features');
+    popupElement.querySelector('.popup__features').style.display = 'none';
   }
   if (offer.description !== '') {
     popupElement.querySelector('.popup__description').textContent = offer.description;
   } else {
-    popupElement.classList.remove('.popup__description');
+    popupElement.querySelector('.popup__description').style.display = 'none';
   }
   if (offer.photos.length !== 0) {
     const popupPhotosList = popupElement.querySelector('.popup__photos');
@@ -82,13 +82,13 @@ similarPopups.forEach( ({author, offer}) => {
       popupPhotosList.appendChild(photoElement);
     });
   } else {
-    popupElement.classList.remove('.popup__photos');
+    popupElement.querySelector('.popup__photos').style.display = 'none';
   }
 
   if (author.avatar !== '') {
     popupElement.querySelector('.popup__avatar').src = author.avatar;
   } else {
-    popupElement.classList.remove('.popup__avatar');
+    popupElement.querySelector('.popup__avatar').style.display = 'none';
   }
 
   similarListFragment.appendChild(popupElement);
