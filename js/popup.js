@@ -9,14 +9,14 @@ function hideElement(element) {
   element.style.display = 'none';
 }
 
-const typeDictionary = new Map();
-typeDictionary.set('flat', 'Квартира');
-typeDictionary.set('bungalow', 'Бунгало');
-typeDictionary.set('house', 'Дом');
-typeDictionary.set('palace', 'Дворец');
-typeDictionary.set('hotel', 'Отель');
+const typeDictionary = {flat: 'Квартира',
+  bungalow: 'Бунгало',
+  house: 'Дом',
+  palace: 'Дворец',
+  hotel: 'Отель'
+};
 
-function getTitle(elementTitle, offerTitle) {
+function setTitle(elementTitle, offerTitle) {
   if (offerTitle !== '') {
     elementTitle.textContent = offerTitle;
   } else {
@@ -24,7 +24,7 @@ function getTitle(elementTitle, offerTitle) {
   }
 }
 
-function getAddress(elementAddress,offerAddress) {
+function setAddress(elementAddress,offerAddress) {
   if (offerAddress !== '') {
     elementAddress.textContent = offerAddress;
   } else {
@@ -32,7 +32,7 @@ function getAddress(elementAddress,offerAddress) {
   }
 }
 
-function getPrice(elementPrice, offerPrice) {
+function setPrice(elementPrice, offerPrice) {
   if (offerPrice !== '') {
     elementPrice.textContent = `${offerPrice} ₽/ночь`;
   } else {
@@ -40,23 +40,23 @@ function getPrice(elementPrice, offerPrice) {
   }
 }
 
-function getType(elementType, offeType) {
-  if (offeType !== '') {
-    switch (offeType) {
+function setType(elementType, offerType) {
+  if (offerType !== '') {
+    switch (offerType) {
       case 'flat':
-        elementType.textContent = typeDictionary.get('flat');
+        elementType.textContent = typeDictionary.flat;
         break;
       case 'bungalow':
-        elementType.textContent = typeDictionary.get('bungalow');
+        elementType.textContent = typeDictionary.bungalow;
         break;
       case 'house':
-        elementType.textContent = typeDictionary.get('house');
+        elementType.textContent = typeDictionary.house;
         break;
       case 'palace':
-        elementType.textContent = typeDictionary.get('palace');
+        elementType.textContent = typeDictionary.palace;
         break;
       case 'hotel':
-        elementType.textContent = typeDictionary.get('hotel');
+        elementType.textContent = typeDictionary.hotel;
         break;
     }
   } else {
@@ -64,7 +64,7 @@ function getType(elementType, offeType) {
   }
 }
 
-function getCapacity(elementCapacity, offerRooms, offerGuests){
+function setCapacity(elementCapacity, offerRooms, offerGuests){
   if ((offerRooms !== '') & (offerGuests !== '')) {
     elementCapacity.textContent = `${offerRooms} комнаты для ${offerGuests}`;
   } else {
@@ -72,7 +72,7 @@ function getCapacity(elementCapacity, offerRooms, offerGuests){
   }
 }
 
-function getTime(elementTime, offerCheckin, offerCheckout) {
+function setTime(elementTime, offerCheckin, offerCheckout) {
   if ((offerCheckin !== '') & (offerCheckout !== '')) {
     elementTime.textContent = `Заезд после ${offerCheckin}, выезд до ${offerCheckout}`;
   } else {
@@ -80,7 +80,7 @@ function getTime(elementTime, offerCheckin, offerCheckout) {
   }
 }
 
-function getListFeatures (featureContainer, offerFeatures) {
+function setListFeatures (featureContainer, offerFeatures) {
   if (offerFeatures.length !== 0) {
     const featureList = featureContainer.querySelectorAll('.popup__feature');
     featureList.forEach((featureListItem) => {
@@ -96,7 +96,7 @@ function getListFeatures (featureContainer, offerFeatures) {
   }
 }
 
-function getDescription(elementDescription, offerDescription) {
+function setDescription(elementDescription, offerDescription) {
   if (offerDescription !== '') {
     elementDescription.textContent = offerDescription;
   } else {
@@ -104,7 +104,7 @@ function getDescription(elementDescription, offerDescription) {
   }
 }
 
-function getPhotos(photosList, offerPhotos) {
+function setPhotos(photosList, offerPhotos) {
   if (offerPhotos.length !== 0) {
     const templatePhoto = photosList.querySelector('.popup__photo');
     photosList.innerHTML = '';
@@ -118,7 +118,7 @@ function getPhotos(photosList, offerPhotos) {
   }
 }
 
-function getAvatar(elementAvatar, authorAvatar) {
+function setAvatar(elementAvatar, authorAvatar) {
   if (authorAvatar !== '') {
     elementAvatar.src = authorAvatar;
   } else {
@@ -128,16 +128,16 @@ function getAvatar(elementAvatar, authorAvatar) {
 
 data.forEach( ({author, offer}) => {
   const element = template.cloneNode(true);
-  getTitle(element.querySelector('.popup__title'),offer.title);
-  getAddress(element.querySelector('.popup__text--address'),offer.address);
-  getPrice(element.querySelector('.popup__text--price'), offer.price);
-  getType(element.querySelector('.popup__type'), offer.type);
-  getCapacity(element.querySelector('.popup__text--capacity'), offer.rooms, offer.guests);
-  getTime(element.querySelector('.popup__text--time'),offer.checkin, offer.checkout);
-  getListFeatures(element.querySelector('.popup__features'), offer.features);
-  getDescription(element.querySelector('.popup__description'), offer.description);
-  getPhotos(element.querySelector('.popup__photos'), offer.photos);
-  getAvatar(element.querySelector('.popup__avatar'), author.avatar);
+  setTitle(element.querySelector('.popup__title'),offer.title);
+  setAddress(element.querySelector('.popup__text--address'),offer.address);
+  setPrice(element.querySelector('.popup__text--price'), offer.price);
+  setType(element.querySelector('.popup__type'), offer.type);
+  setCapacity(element.querySelector('.popup__text--capacity'), offer.rooms, offer.guests);
+  setTime(element.querySelector('.popup__text--time'),offer.checkin, offer.checkout);
+  setListFeatures(element.querySelector('.popup__features'), offer.features);
+  setDescription(element.querySelector('.popup__description'), offer.description);
+  setPhotos(element.querySelector('.popup__photos'), offer.photos);
+  setAvatar(element.querySelector('.popup__avatar'), author.avatar);
   listFragment.appendChild(element);
 });
 
