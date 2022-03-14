@@ -59,4 +59,8 @@ function getCard() {
   };
 }
 
-export {getCard};
+function arrayCards() {
+  return Array.from({length: 1}, getCard);
+}
+
+export {arrayCards};
