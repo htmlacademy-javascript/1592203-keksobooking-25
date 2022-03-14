@@ -42,23 +42,7 @@ function setPrice(elementPrice, offerPrice) {
 
 function setType(elementType, offerType) {
   if (offerType !== '') {
-    switch (offerType) {
-      case 'flat':
-        elementType.textContent = typeDictionary[offerType];
-        break;
-      case 'bungalow':
-        elementType.textContent = typeDictionary[offerType];
-        break;
-      case 'house':
-        elementType.textContent = typeDictionary[offerType];
-        break;
-      case 'palace':
-        elementType.textContent = typeDictionary[offerType];
-        break;
-      case 'hotel':
-        elementType.textContent = typeDictionary[offerType];
-        break;
-    }
+    elementType.textContent = typeDictionary[offerType];
   } else {
     hideElement(elementType);
   }
