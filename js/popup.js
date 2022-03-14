@@ -44,19 +44,19 @@ function setType(elementType, offerType) {
   if (offerType !== '') {
     switch (offerType) {
       case 'flat':
-        elementType.textContent = typeDictionary.flat;
+        elementType.textContent = typeDictionary[offerType];
         break;
       case 'bungalow':
-        elementType.textContent = typeDictionary.bungalow;
+        elementType.textContent = typeDictionary[offerType];
         break;
       case 'house':
-        elementType.textContent = typeDictionary.house;
+        elementType.textContent = typeDictionary[offerType];
         break;
       case 'palace':
-        elementType.textContent = typeDictionary.palace;
+        elementType.textContent = typeDictionary[offerType];
         break;
       case 'hotel':
-        elementType.textContent = typeDictionary.hotel;
+        elementType.textContent = typeDictionary[offerType];
         break;
     }
   } else {
